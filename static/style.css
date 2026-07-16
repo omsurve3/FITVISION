@@ -1,0 +1,959 @@
+/* =========================================================
+   GLOBAL THEME + DESIGN TOKENS
+========================================================= */
+
+:root {
+  --fv-bg: #0A0D14;
+  --fv-sidebar: #111520;
+  --fv-panel: #181D2A;
+  --fv-panel-alt: #10141F;
+  --fv-panel-soft: #1B2130;
+  --fv-border: rgba(255, 255, 255, 0.08);
+  --fv-border-soft: rgba(255, 255, 255, 0.05);
+
+  --fv-amber: #FFB13C;
+  --fv-amber-soft: rgba(255, 177, 60, 0.14);
+  --fv-mint: #4DE8C2;
+  --fv-mint-soft: rgba(77, 232, 194, 0.12);
+  --fv-text-muted: #8892A6;
+
+  --fv-gradient-amber: linear-gradient(135deg, #FFC266 0%, #FF9A3D 100%);
+  --fv-gradient-panel: linear-gradient(160deg, #1C2233 0%, #10141F 100%);
+
+  --fv-radius-lg: 20px;
+  --fv-radius-md: 14px;
+  --fv-radius-sm: 10px;
+
+  --fv-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --fv-shadow-md: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --fv-shadow-glow-amber: 0 0 0 3px rgba(255, 177, 60, 0.18);
+  --fv-shadow-glow-mint: 0 0 0 3px rgba(77, 232, 194, 0.18);
+}
+
+.stApp {
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(255, 177, 60, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(77, 232, 194, 0.05), transparent 55%),
+    var(--fv-bg);
+  color: #fff;
+}
+
+[data-testid="stSidebar"] {
+  background-color: var(--fv-sidebar);
+  border-right: 1px solid var(--fv-border);
+}
+
+/* =========================================================
+   TYPOGRAPHY (SCOPED – safer)
+========================================================= */
+
+.block-container,
+.block-container * {
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.block-container {
+  padding: 50px 3rem !important;
+  max-width: 780px !important;
+}
+
+/* =========================================================
+   DIVIDERS
+   #17 — subtle gradient hairline instead of the default hr
+========================================================= */
+
+[data-testid="stDivider"],
+hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--fv-border) 15%,
+    var(--fv-border) 85%,
+    transparent 100%
+  ) !important;
+  margin: 1.1rem 0 !important;
+  opacity: 1 !important;
+}
+
+/* =========================================================
+   BUTTONS
+   #13 — gradient, rounded, hover lift
+========================================================= */
+
+button,
+.stButton button,
+.stDownloadButton button,
+.MuiBox-root button {
+  background: var(--fv-panel) !important;
+  border: 1px solid var(--fv-border) !important;
+  border-radius: var(--fv-radius-sm) !important;
+  font-family: 'AdobeClean', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+button:hover,
+.stButton button:hover,
+.stDownloadButton button:hover {
+  border-color: rgba(255, 177, 60, 0.4) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--fv-shadow-sm);
+}
+
+button:active,
+.stButton button:active {
+  transform: translateY(0);
+}
+
+/* Primary CTA (Streamlit's primary type — Start Workout) gets the full gradient treatment */
+.stButton button[kind="primary"],
+button[kind="primary"] {
+  background: var(--fv-gradient-amber) !important;
+  border: none !important;
+  color: #1A1204 !important;
+  box-shadow: 0 6px 18px rgba(255, 177, 60, 0.25);
+}
+
+.stButton button[kind="primary"]:hover,
+button[kind="primary"]:hover {
+  box-shadow: 0 8px 22px rgba(255, 177, 60, 0.35);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   INPUTS & TEXT ELEMENTS
+   #14 — rounded, padding, focus glow
+========================================================= */
+
+input,
+textarea,
+p,
+li,
+code,
+[data-testid="stSelectbox"] > div > div,
+[data-baseweb="select"] > div,
+[data-baseweb="popover"] ul,
+[data-baseweb="menu"] {
+  border-radius: var(--fv-radius-sm) !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+input,
+textarea {
+  background-color: var(--fv-panel-soft) !important;
+  border: 1px solid var(--fv-border) !important;
+  padding: 0.55rem 0.85rem !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+textarea:focus,
+[data-baseweb="select"] > div:focus-within {
+  border-color: var(--fv-amber) !important;
+  box-shadow: var(--fv-shadow-glow-amber) !important;
+  outline: none !important;
+}
+
+/* =========================================================
+   METRICS
+   Priority 5/6 — icon-ready cards with accent top border
+========================================================= */
+
+[data-testid="stMetric"] {
+  background: var(--fv-gradient-panel);
+  border: 1px solid var(--fv-border);
+  border-top: 2px solid var(--fv-amber);
+  padding: 1rem 1.2rem;
+  border-radius: var(--fv-radius-md);
+  box-shadow: var(--fv-shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-testid="stMetric"]:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--fv-shadow-md);
+}
+
+[data-testid="stMetric"] div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+[data-testid="stMetricValue"] {
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace !important;
+  font-variant-numeric: tabular-nums;
+  color: #fff !important;
+}
+
+[data-testid="stMetricLabel"] {
+  font-size: 13px !important;
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+[data-testid="stMetric"] div label p {
+  font-size: 16px !important;
+}
+
+/* stack metrics with breathing room */
+[data-testid="stMetric"] + [data-testid="stMetric"] {
+  margin-top: 10px;
+}
+
+/* =========================================================
+   CONTAINERS / CARDS
+   #2/#3 — card feeling, rounded, glass-friendly
+========================================================= */
+
+.stContainer,
+.stExpander,
+.stTabs,
+.stColumns,
+.stPopover,
+.stAlertContainer,
+.stStatusContainer,
+.stMetric,
+.stTable,
+.stDataFrame,
+.stForm,
+.stSelectbox,
+[data-baseweb="select"] > div,
+[data-testid="stForm"],
+[data-testid="stMetric"],
+[data-testid="stNumberInputContainer"],
+[data-testid="stDataFrameColumnMenu"],
+[data-testid="stHeadingWithActionElements"],
+[data-testid="stCaptionContainer"] p,
+[data-testid="stAlertContentInfo"] p,
+[data-testid="stSidebarNavLink"],
+[data-testid="stMarkdownContainer"] h3,
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+div[role="menu"],
+div[role="menuitem"] {
+  border-radius: var(--fv-radius-md) !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+/* A bordered st.container(border=True) reads as a proper card */
+[data-testid="stVerticalBlockBorderWrapper"] {
+  border-radius: var(--fv-radius-md) !important;
+  border-color: var(--fv-border) !important;
+  background: var(--fv-panel-soft);
+  padding: 4px 2px;
+}
+
+/* =========================================================
+   SELECTBOX / DROPDOWNS
+   #15 — premium dropdown, better spacing
+========================================================= */
+
+[data-baseweb="select"] > div {
+  background-color: var(--fv-panel-soft) !important;
+  border: 1px solid var(--fv-border) !important;
+  min-height: 44px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-baseweb="select"] > div:hover {
+  border-color: rgba(255, 177, 60, 0.35) !important;
+}
+
+[data-baseweb="popover"] ul,
+[data-baseweb="menu"] {
+  background-color: var(--fv-panel) !important;
+  border: 1px solid var(--fv-border) !important;
+  box-shadow: var(--fv-shadow-md) !important;
+  padding: 4px !important;
+}
+
+[data-baseweb="menu"] li,
+div[role="menuitem"] {
+  border-radius: 8px !important;
+  margin: 2px 0;
+  transition: background 0.12s ease;
+}
+
+div[role="menuitem"]:hover {
+  background-color: var(--fv-amber-soft) !important;
+}
+
+/* =========================================================
+   DATAFRAME / TABLE
+   #12 — rounded border, header color, row hover, alternating rows
+========================================================= */
+
+.stDataFrame,
+.stDataFrame div,
+.stDataFrameGlideDataEditor {
+  border-radius: var(--fv-radius-md) !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+.stTable,
+[data-testid="stTable"] {
+  border-radius: var(--fv-radius-md) !important;
+  overflow: hidden;
+  border: 1px solid var(--fv-border);
+}
+
+[data-testid="stTable"] table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+[data-testid="stTable"] thead tr th {
+  background-color: var(--fv-panel-soft) !important;
+  color: var(--fv-amber) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  border-bottom: 1px solid var(--fv-border) !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+[data-testid="stTable"] tbody tr td {
+  border-bottom: 1px solid var(--fv-border-soft) !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  transition: background 0.12s ease;
+}
+
+[data-testid="stTable"] tbody tr:nth-child(even) td {
+  background-color: rgba(255, 255, 255, 0.015);
+}
+
+[data-testid="stTable"] tbody tr:hover td {
+  background-color: var(--fv-amber-soft) !important;
+}
+
+[data-testid="stTable"] tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* =========================================================
+   INTERACTIVE ELEMENTS
+   #14/#16 — modern styling across all inputs
+========================================================= */
+
+.stTextInput,
+.stTextArea,
+.stNumberInput,
+.stSlider,
+.stMultiselect,
+.stRadio,
+.stCheckbox,
+.stToggle,
+.stFileUploader,
+.stColorPicker,
+.stDateInput,
+.stTimeInput,
+.stCameraInput,
+[data-testid="stTextInput"] > div,
+[data-testid="stButton"] button,
+[data-testid="stBaseButton-secondaryFormSubmit"],
+[data-testid="stStatusWidget"] {
+  border-radius: var(--fv-radius-sm) !important;
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+[data-testid="stNumberInputContainer"] {
+  background-color: var(--fv-panel-soft) !important;
+  border: 1px solid var(--fv-border) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-testid="stNumberInputContainer"]:focus-within {
+  border-color: var(--fv-amber) !important;
+  box-shadow: var(--fv-shadow-glow-amber) !important;
+}
+
+/* =========================================================
+   MARKDOWN
+========================================================= */
+
+[data-testid="stMarkdownContainer"] strong {
+  font-family: 'AdobeClean', sans-serif !important;
+}
+
+/* =========================================================
+   FORM (also styles the login card generically)
+   #11 — rounded, glass background, soft shadow
+========================================================= */
+
+.stForm {
+  margin: 1.5rem auto 2rem auto !important;
+  max-width: 420px !important;
+  padding: 1.75rem 1.5rem !important;
+  background: var(--fv-gradient-panel) !important;
+  border: 1px solid var(--fv-border) !important;
+  border-radius: var(--fv-radius-lg) !important;
+  box-shadow: var(--fv-shadow-md);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+/* =========================================================
+   FITVISION COMPONENTS
+   Custom classes injected from main.py via st.markdown(...,
+   unsafe_allow_html=True). Purely presentational — no effect
+   on Streamlit's native widget behavior or session_state.
+========================================================= */
+
+/* ---- Login split screen (login_wall.py) ----
+   Left 50% of the viewport = image column (fixed).
+   Right 50% = hero + form, achieved by shifting
+   .block-container itself, scoped via :has() so it
+   only applies on the login screen (where the image
+   column exists in the DOM) and never affects the
+   logged-in app layout. ---- */
+
+.fv-login-image-col {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.fv-login-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fv-login-image-col .fv-login-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10, 13, 20, 0.15) 0%,
+    rgba(10, 13, 20, 0.05) 60%,
+    var(--fv-bg) 100%
+  );
+}
+
+/* thin amber divider line marking the vertical split */
+.fv-login-image-col::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 177, 60, 0.35) 50%,
+    transparent 100%
+  );
+}
+
+/* Shift + vertically center the right-hand content column.
+   Scoped to login screen only via :has(). */
+.stApp:has(.fv-login-image-col) .block-container {
+  margin-left: 50vw !important;
+  margin-right: 0 !important;
+  max-width: min(480px, 44vw) !important;
+  padding: 2rem 2.5rem !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Login hero (login_wall.py) ---- */
+.fv-login-hero {
+  max-width: 420px;
+  margin: 0 auto 8px auto;
+  text-align: center;
+}
+
+.fv-login-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fv-amber-soft);
+  border: 1px solid rgba(255, 177, 60, 0.3);
+  color: var(--fv-amber);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.fv-login-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  background: var(--fv-panel-soft);
+  border: 1px solid var(--fv-border);
+  border-radius: var(--fv-radius-md);
+  box-shadow: var(--fv-shadow-sm);
+}
+
+.fv-login-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0;
+}
+
+.fv-login-sub {
+  color: var(--fv-text-muted);
+  font-size: 0.95rem;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.fv-login-field-label {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--fv-text-muted);
+  margin-bottom: 6px;
+}
+
+/* ---- Mobile fallback: stack top/bottom instead of side-by-side ---- */
+@media (max-width: 768px) {
+  .fv-login-image-col {
+    position: relative;
+    width: 100vw;
+    height: 34vh;
+    min-height: 220px;
+    margin-left: calc(-50vw + 50%);
+    margin-top: -50px;
+  }
+
+  .fv-login-image-col::after {
+    display: none;
+  }
+
+  .fv-login-image-col .fv-login-image-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(10, 13, 20, 0.1) 40%,
+      var(--fv-bg) 100%
+    );
+  }
+
+  .stApp:has(.fv-login-image-col) .block-container {
+    margin-left: 0 !important;
+    max-width: 100% !important;
+    padding: 1.5rem 1.25rem !important;
+  }
+}
+
+
+/* ---- Hero ---- */
+.fv-hero {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--fv-border);
+  border-radius: var(--fv-radius-lg);
+  background: var(--fv-gradient-panel);
+  padding: 32px 34px;
+  margin-bottom: 4px;
+  box-shadow: var(--fv-shadow-md);
+}
+
+.fv-hero::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  right: -20%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(255, 177, 60, 0.16) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.fv-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fv-amber-soft);
+  border: 1px solid rgba(255, 177, 60, 0.3);
+  color: var(--fv-amber);
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.fv-hero-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.fv-hero-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: var(--fv-panel-soft);
+  border: 1px solid var(--fv-border);
+  border-radius: var(--fv-radius-md);
+}
+
+.fv-hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--fv-amber);
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.fv-hero-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.fv-hero-sub {
+  color: var(--fv-text-muted);
+  font-size: 0.98rem;
+  margin-top: 8px;
+  line-height: 1.55;
+  max-width: 46ch;
+}
+
+/* ---- Live/idle status pill ---- */
+.fv-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--fv-border);
+  background: var(--fv-panel-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+.fv-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.fv-status-live {
+  color: var(--fv-mint);
+  border-color: rgba(77, 232, 194, 0.3);
+  background: var(--fv-mint-soft);
+}
+
+.fv-status-live .fv-status-dot {
+  background: var(--fv-mint);
+  box-shadow: 0 0 8px var(--fv-mint);
+  animation: fv-pulse 1.8s ease-in-out infinite;
+}
+
+.fv-status-idle {
+  color: var(--fv-text-muted);
+}
+
+.fv-status-idle .fv-status-dot {
+  background: var(--fv-text-muted);
+}
+
+@keyframes fv-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fv-status-live .fv-status-dot {
+    animation: none;
+  }
+}
+
+/* ---- Section headers (with icon support) ---- */
+.fv-section-label {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--fv-text-muted);
+  border-bottom: 1px solid var(--fv-border);
+  padding-bottom: 8px;
+  margin: 22px 0 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fv-section-label span.fv-accent {
+  color: var(--fv-amber);
+}
+
+.fv-section-heading {
+  margin: 24px 0 16px 0;
+}
+
+.fv-section-heading .fv-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.fv-section-heading .fv-section-subtitle {
+  color: var(--fv-text-muted);
+  font-size: 13px;
+  margin: 4px 0 0 0;
+}
+
+.fv-section-heading .fv-section-rule {
+  height: 1px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, var(--fv-border) 0%, transparent 100%);
+}
+
+/* ---- Sidebar brand + user ---- */
+.fv-sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  padding-bottom: 4px;
+}
+
+.fv-sidebar-brand-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  background: var(--fv-amber-soft);
+  border: 1px solid rgba(255, 177, 60, 0.3);
+  border-radius: 10px;
+}
+
+.fv-sidebar-brand .fv-brand-tag {
+  color: var(--fv-amber);
+}
+
+.fv-sidebar-user {
+  font-size: 12px;
+  color: var(--fv-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 4px;
+}
+
+.fv-sidebar-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #fff;
+  margin: 4px 0 14px 0;
+}
+
+/* ---- Active workout chip (sidebar) ---- */
+.fv-active-chip {
+  border: 1px solid rgba(77, 232, 194, 0.3);
+  background: var(--fv-mint-soft);
+  border-radius: var(--fv-radius-md);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.fv-active-chip b {
+  color: var(--fv-mint);
+}
+
+/* ---- Empty state (camera placeholder / ready room) ---- */
+.fv-empty-state {
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: var(--fv-radius-lg);
+  padding: 56px 32px;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  background: var(--fv-panel-alt);
+  backdrop-filter: blur(6px);
+}
+
+.fv-empty-state .fv-empty-icon {
+  font-size: 40px;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.fv-empty-state .fv-empty-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 11px;
+  color: var(--fv-amber);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.fv-empty-state h2 {
+  color: #eee;
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+}
+
+.fv-empty-state p {
+  font-size: 1.0rem;
+  color: var(--fv-text-muted);
+  line-height: 1.6;
+}
+
+.fv-empty-state .fv-empty-steps {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+  text-align: left;
+}
+
+.fv-empty-state .fv-empty-step {
+  font-size: 13.5px;
+  color: var(--fv-text-muted);
+}
+
+.fv-empty-state .fv-empty-step b {
+  color: var(--fv-amber);
+}
+
+/* Small empty state used for workout history */
+.fv-empty-state.fv-empty-state-compact {
+  padding: 40px 24px;
+}
+
+/* ---- Coach feedback callout ---- */
+.fv-coach-callout {
+  border: 1px solid rgba(77, 232, 194, 0.3);
+  border-radius: var(--fv-radius-md);
+  background: var(--fv-mint-soft);
+  padding: 16px 20px;
+  margin: 12px 0 4px 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  box-shadow: var(--fv-shadow-sm);
+}
+
+.fv-coach-callout .fv-coach-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--fv-mint);
+  margin-bottom: 8px;
+}
+
+/* ---- History footer note ---- */
+.fv-footer-note {
+  color: var(--fv-text-muted);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 18px;
+  letter-spacing: 0.03em;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .fv-hero {
+    padding: 22px 20px;
+  }
+
+  .fv-hero-top {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .fv-hero-title {
+    font-size: 1.5rem;
+  }
+
+  .fv-empty-state {
+    padding: 40px 20px;
+  }
+}
+
+
+.fv-login-image-col img {
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    background:#0A0D14;
+}
+
+.fv-login-image-col img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    /* Keep your face and upper body visible */
+    object-position: center 18%;
+
+    display: block;
+
+    transform: scale(1.08);
+
+    filter: contrast(1.05) brightness(.92);
+}
